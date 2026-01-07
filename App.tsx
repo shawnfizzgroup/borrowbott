@@ -1,45 +1,39 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+// App.tsx
+import 'react-native-gesture-handler';
+import React from 'react';
+import Home from './src/screens/Home';
+import { Settings } from './src/screens/Settings.tsx';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { BorrowDashboard } from './src/screens/BorrowDashboard';
+import { enableScreens } from 'react-native-screens';
+import { StatusBar, useColorScheme } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { RemindersScreen } from './src/screens/RemindersScreen.tsx';
+import { ReturnDashboard } from './src/screens/ReturnDashboard.tsx';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+enableScreens();
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
 
+  const Stack = createNativeStackNavigator();
+  const isDarkMode = useColorScheme() === 'dark';
   return (
     <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
+      <SafeAreaView style={{flex:1}}>
+        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="BorrowDashboard" component={BorrowDashboard} />
+        <Stack.Screen name="Settings" component={Settings} />
+        <Stack.Screen name="RemindersScreen" component={RemindersScreen} />
+        <Stack.Screen name="ReturnDashboard" component={ReturnDashboard} />
+      </Stack.Navigator>
+    </NavigationContainer>
+      </SafeAreaView>
     </SafeAreaProvider>
   );
 }
-
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
-  return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;
