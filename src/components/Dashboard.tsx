@@ -6,7 +6,7 @@ const Dashboard: FC = () => {
   return (
     <View style={styles.container}>
       <View style={styles.row}>
-      <DashboardGroup title={"# Items out"}/>
+      <DashboardGroup title={"# Items out on loan"}/>
       <DashboardGroup title={"# Items overdue"}/>
       </View>
       <View style={styles.row}>
@@ -27,7 +27,8 @@ const DashboardGroup: FC<DashboardGroupProps> = ({title, subtitle}) => {
     <View style={styles.group}>
       <Animated.Text style={styles.title}>{title}</Animated.Text>
       <Animated.Text style={styles.subtitle}>{subtitle}</Animated.Text>
-      <View style={styles.separator}></View>
+      <View style={styles.separator}/>
+      <Animated.Text style={styles.amount}>0</Animated.Text>
     </View>
   )
 };
@@ -57,6 +58,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   subtitle: {
     fontSize: 16,
@@ -67,6 +69,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#ccc', // Light gray color for the separator
     width: '100%', // Full width
   },
+  amount: {
+    fontSize: 36,
+    fontWeight: 'bold',
+    marginTop: 10,
+  }
 });
 
 export default Dashboard;

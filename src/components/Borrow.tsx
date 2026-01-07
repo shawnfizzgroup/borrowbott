@@ -1,20 +1,20 @@
-import { FC, useState } from 'react';
-import { Button, StyleSheet, Text } from 'react-native';
+import { FC, SetStateAction, useState } from 'react';
+import { Button, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-const Borrow:FC = () => {
+const Borrow: FC = () => {
   const [date, setDate] = useState(new Date(1598051730000));
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
 
-  const onChange = (event, selectedDate) => {
+  const onChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate;
     setShow(false);
     setDate(currentDate);
   };
 
-  const showMode = (currentMode) => {
+  const showMode = (currentMode: SetStateAction<string>) => {
     setShow(true);
     setMode(currentMode);
   };
@@ -36,41 +36,13 @@ const Borrow:FC = () => {
         <DateTimePicker
           testID="dateTimePicker"
           value={date}
-          mode={mode}
+          mode={mode as 'date' | 'time' | 'datetime'}
           is24Hour={true}
           onChange={onChange}
         />
       )}
     </SafeAreaView>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    // flex: 1, // Takes up the full screen
-    // justifyContent: 'center', // Centers content vertically
-    // alignItems: 'center', // Centers content horizontally
-    // backgroundColor: '#f2f2f2', // Light gray background,
-    // borderWidth: 1,
-    // borderColor: 'black',
-    // borderRadius: '10px',
-    // padding: 20,
-  },
-  title: {
-    fontSize: 24, // Large font size
-    fontWeight: 'bold', // Bold text
-    color: 'black', // Text color
-  },
-  subtitle: {
-    fontSize: 16,
-    color: 'gray',
-    marginTop: 8, // Spacing between the title and subtitle
-  },
-  group: {
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: 'black',
-    borderStyle: 'solid'
-  }
-});
 export default Borrow;

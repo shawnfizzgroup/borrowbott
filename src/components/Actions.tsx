@@ -34,7 +34,11 @@ const Actions = () => {
           <Button title="Return item" onPress={() => handlePress('return')} />
         </View>
       </View>
-
+      <View style={styles.row}>
+        <View style={styles.buttonContainer}>
+          <Button title="Loan item" onPress={() => handlePress('loan')} />
+        </View>
+      </View>
       <View style={styles.row}>
         <View style={styles.buttonContainer}>
           <Button title="Reminders" onPress={() => handlePress('reminders')} />
